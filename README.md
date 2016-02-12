@@ -1,5 +1,5 @@
 # provider_tracker
-Hours and location tracker for homecare workers (IPs) in the field.
+Hours and location tracker for homecare providers in the field.
 
 ## Problem Statement
 
