@@ -1,4 +1,4 @@
-# ip_tracker
+# provider_tracker
 Hours and location tracker for homecare workers (IPs) in the field.
 
 ## Problem Statement
@@ -6,7 +6,8 @@ Hours and location tracker for homecare workers (IPs) in the field.
 ## Draft Feature Set
 
 ## Draft Technology Choices
-* Secure Public API
+* SMS messaging API
 * Live Events (notifications, live updates)
 * Visualization tools (high charts, D3)
-
+* Python
+* AWS
