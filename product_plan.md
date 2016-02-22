@@ -13,8 +13,14 @@
     - non-app solutions
       - paper timesheet signed by both client and worker.  Still required in Illinois for some reason.  Workers and Clients must submit          these in addition to using automated system. 
     - research from users on why these alternatives do not effectively address the problem.
-      -  
+      -  My previous position as a case coordinator at the Illinois Department of Rehabilitation gave me direct user experience with            the Santrax and paper timesheet systems of tracking workers.  In my experience I found the following problems:
+        - Both systems required undo time commitment from workers and admins and distracted from client care
+          -  paper timesheets required worker to leave client to drop off timesheet at local office twice per month
+          -  admins needed to manually check that timesheets matched Santrax, and required that admins contact clients if timesheets                 were illegible or timesheets and santrax logs had mismatched work hours
+          -  Santrax system had time-consuming robo-operator that required worker to go through up to ten steps to check in and out and             did not give feedback when worker input incorrect information
+          -  bugs in Santrax required admins to repeatedly contact workers and clients to verify hours worked when calls did not log or             were incomplete
     - differentiation: what makes your idea/product different
+      - by texting in worker ID #'s, workers will be able to see the information they are logging in, and will have better feedback on         typos.  This will cut down on the follow-up and error correcting required from the worker and admin under the previous system
 3. __User Personas__: A summary of your main target user group(s). What are their key characteristics? How do those characteristics factor into project/app/idea?
   - WORKER
   - CLIENT
@@ -31,5 +37,5 @@
    - Draft Technology Choices
       * SMS messaging API (Twilio)
       * Live Events (notifications, live updates)
-      * Python
+      * Ruby on Rails
       * Heroku
