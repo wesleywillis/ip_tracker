@@ -21,8 +21,7 @@
   - ADMIN(DISTRICT)
 4. __Trello Board__:
   - https://trello.com/b/mXAhNW8P/provider-tracker
-5. __Optional__:
-  - Technology selections
+5. __Technology selections__:
    - Draft Feature Set
 
       * Database that logs clients, their address, their providers, provider ID #'s, history of provider check ins/outs, and contact         information for clients and providers
