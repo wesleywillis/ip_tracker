@@ -23,4 +23,14 @@
   - https://trello.com/b/mXAhNW8P/provider-tracker
 5. __Optional__:
   - Technology selections
-  - Wireframes
+    ## Draft Feature Set
+
+      * Database that logs clients, their address, their providers, provider ID #'s, history of provider check ins/outs, and contact         information for clients and providers
+      * API that accepts SMS from provider and returns unique link for checking in - then returns time and location information of           check ins/outs to database
+      * Administrator interface that displays client and provider information, and alerts administrator of unusual behavior
+
+   ## Draft Technology Choices
+      * SMS messaging API (Twilio)
+      * Live Events (notifications, live updates)
+      * Python
+      * Heroku
