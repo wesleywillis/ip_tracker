@@ -44,7 +44,6 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'simplecov', require: false
-  #gem 'sqlite3'
   gem 'pry'
 end
 
