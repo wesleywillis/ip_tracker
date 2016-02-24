@@ -32,3 +32,12 @@ seed_workers = [
 seed_workers.each do |seed|
   Worker.create(seed)
 end
+
+seed_clients_workers = [
+  {client_id: 1, worker_id: 1},
+  {client_id: 2, worker_id: 1},
+]
+
+seed_clients_workers.each do |seed|
+  ClientsWorker.create(seed)
+end
