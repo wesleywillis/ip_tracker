@@ -18,12 +18,13 @@ class WelcomeController < ApplicationController
   def index
     # put your own credentials here
     account_sid = ENV['TWILIO_ACCOUNT_SID']
-    auth_token = 'ENV['TWILIO_AUTH_TOKEN']
+    auth_token = ENV['TWILIO_AUTH_TOKEN']
     # set up a client to talk to the Twilio REST API
     @client = Twilio::REST::Client.new account_sid, auth_token
 
-    @client.account.messages.list({ }).each do |message| 
-	     puts message.body
-     end
-
+    @messages = []
+    @client.account.messages.list({ }).each do |message|
+	     @messages.push(message.body)
+    end
   end
+end
