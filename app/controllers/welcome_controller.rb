@@ -22,9 +22,21 @@ class WelcomeController < ApplicationController
     # set up a client to talk to the Twilio REST API
     @client = Twilio::REST::Client.new account_sid, auth_token
 
+
+
     @messages = []
+   #twiml = Twilio::TwiML::Response.new do |r|
+  #  r.Message "Hey girl hey. Thanks for the message."
+  #  end
+  #  twiml.text
+
     @client.account.messages.list({ }).each do |message|
 	     @messages.push(message.body)
+       @client.account.messages.create({
+	        :from => '+17734821550',
+	        :to => message.from,
+	        :body => 'howdy partner',
+        })
     end
   end
 end

@@ -1,2 +1,5 @@
 NONSENSE
-<%= @messages %>
+<ul><% @messages.each do |text| %>
+  <li><%= text %></li>
+  <%end%>
+</ul>  
