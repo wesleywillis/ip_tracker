@@ -1,1 +1,17 @@
-<%= @text_back %>
+<div class="container">
+  <div class="container" id="app-texty-title">
+    <h1>Hello Texty!</h1>
+  </div>
+
+  <div class="container" id="app-texty-form">
+    <%= form_for @phone, url: '/send_text' do |f| %>
+    <%= f.label :number, 'Enter Your Phone Number' %>
+    <%= f.telephone_field :number, class: 'form-control', placeholder: '###-###-####' %><br>
+    <%= f.submit 'Send Text', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+
+  <div class="container navbar-fixed-bottom" id="app-texty-footer">
+    <p>*please note that your phone number will not be saved, shared, or sold by this application nor any other party, it is only used for the purposes of this exercise</p>
+  </div>
+</div>
