@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-lg-12">
+    <fieldset>
+      <%= form_for client, url:{action: action}, :html => {:class => "form" } do |f| %>
+        <h2><%= title %></h2>
+        <div class="form-group">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :primary_phone %><br>
+          <%= f.text_field :primary_phone, class: "form-control" %><br>
+        </div>
+        <%= f.submit "Save", class: "btn btn-default" %>
+      <% end %>
+    </fieldset>
+  </div>
+</div>
