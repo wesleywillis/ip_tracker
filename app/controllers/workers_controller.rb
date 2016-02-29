@@ -10,8 +10,9 @@ class WorkersController < ApplicationController
 
   def create
     @worker = Worker.new(worker_params)
+
     if @worker.save
-      redirect_to worker_path(@worker)
+      redirect_to district_worker_path(params[:district_id], @worker)
     else
       render "new"
     end
@@ -21,5 +22,5 @@ class WorkersController < ApplicationController
 
   def worker_params
     params.require(:worker).permit(:first_name, :last_name, :primary_phone)
-  end  
+  end
 end
