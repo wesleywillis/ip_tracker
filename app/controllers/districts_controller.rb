@@ -1,4 +1,16 @@
 class DistrictsController < ApplicationController
   def index
-  end  
+    @districts = District.all
+  end
+
+  def show
+    id = params[:id]
+    @district = District.find(id)
+  end
+
+  private
+
+  def district_params
+    params.require(:district).permit(:zip_code)
+  end
 end

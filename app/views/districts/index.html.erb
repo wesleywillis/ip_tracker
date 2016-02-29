@@ -1,0 +1,6 @@
+<h1> List of Districts </h1>
+<ul>
+<% @districts.each do |office| %>
+<li>ID:<%= office.id%>  Zip: <%= link_to office.zip_code, office %></li>
+<% end %>
+</ul>
