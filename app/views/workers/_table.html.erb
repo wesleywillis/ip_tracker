@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <table class="table table-bordered" >
+      <thead>
+        <tr>
+        <th>Id Number</th>
+        <th>Name (Last, First)</th>
+        <th>Primary Phone Number</th>
+        <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <% group.each do |person|%>
+        <td><%= person.id%></td>
+        <td><%= link_to (person.last_name + ", " + person.first_name), district_worker_path(params[:district_id], person)%></td>
+        <td><%= person.primary_phone%></td>
+        <td>EDIT BUTTON</td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
