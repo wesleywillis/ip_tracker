@@ -20,6 +20,25 @@ class WorkersController < ApplicationController
     end
   end
 
+  def edit
+    id = params[:id]
+    @worker = Worker.find(id)
+    @all_clients = Client.all
+  end
+
+  def update
+    id = params[:id]
+    @worker = Worker.find(id)
+    @worker.update(worker_params)
+    update_clients(@worker)
+    if @worker.save
+      redirect_to district_worker_path(params[:district_id], @worker)
+    else
+      @all_clients = Client.all
+      render "edit"
+    end
+  end
+
   private
 
   def worker_params
