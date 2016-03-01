@@ -1,4 +1,8 @@
 class WorkersController < ApplicationController
+  def index
+    @all_workers = Worker.all
+  end
+
   def new
     @worker = Worker.new
     @all_clients = Client.all

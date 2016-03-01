@@ -1,4 +1,8 @@
 class ClientsController < ApplicationController
+  def index
+    @all_clients = Client.all
+  end
+
   def new
     @client = Client.new
     @all_workers = Worker.all
@@ -17,6 +21,25 @@ class ClientsController < ApplicationController
       redirect_to district_client_path(params[:district_id], @client)
     else
       render "new"
+    end
+  end
+
+  def edit
+    id = params[:id]
+    @client = Client.find(id)
+    @all_workers = Worker.all
+  end
+
+  def update
+    id = params[:id]
+    @client = Client.find(id)
+    @client.update(client_params)
+    update_workers(@client)
+    if @client.save
+      redirect_to district_client_path(params[:district_id], @client)
+    else
+      @all_workers = Worker.all
+      render "edit"
     end
   end
 

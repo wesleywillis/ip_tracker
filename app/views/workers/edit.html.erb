@@ -1,2 +1,2 @@
-<%= render partial:'form',
-  locals:{ worker: @worker, action: :update, title: "Edit Worker Information" } %>
+<%= render partial:'layouts/form',
+  locals:{ person: @worker, group: @all_clients, action: :update, form_title: "Edit Worker Information", select_title: "Client(s) for Worker", care_pair: @worker.clients } %>
