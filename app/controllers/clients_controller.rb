@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
   def new
     @client = Client.new
+    @all_workers = Worker.all
   end
 
   def show
@@ -10,8 +11,9 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(client_params)
-
+    @all_workers = Worker.all
     if @client.save
+      update_workers(@client)
       redirect_to district_client_path(params[:district_id], @client)
     else
       render "new"
