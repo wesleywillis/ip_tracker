@@ -15,7 +15,7 @@
         <td><%= person.id%></td>
         <td><%= link_to (person.last_name + ", " + person.first_name), district_worker_path(params[:district_id], person)%></td>
         <td><%= person.primary_phone%></td>
-        <td>EDIT BUTTON</td>
+        <td><%= link_to "Edit", edit_district_worker_path(params[:district_id], person), class: "btn btn-primary" %></td>
         </tr>
         <% end %>
       </tbody>
