@@ -33,11 +33,11 @@ seed_workers.each do |seed|
   Worker.create(seed)
 end
 
-seed_clients_workers = [
+seed_care_pairs = [
   {client_id: 1, worker_id: 1},
   {client_id: 2, worker_id: 1},
 ]
 
-seed_clients_workers.each do |seed|
-  ClientsWorker.create(seed)
+seed_care_pairs.each do |seed|
+  CarePair.create(seed)
 end
