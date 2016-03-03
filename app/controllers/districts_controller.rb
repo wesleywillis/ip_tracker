@@ -21,6 +21,7 @@ class DistrictsController < ApplicationController
 
   def sms
     puts "@@@@_____________________________line 23"
+    @district_dummy = District.find_by_id(1)
     socket = PusherClient::Socket.new(ENV["PUSHER_APP_KEY"])
     socket.subscribe('provider_sms-development')
     socket.connect(true)
@@ -39,8 +40,12 @@ class DistrictsController < ApplicationController
         :timestamp => Time.now.strftime("%Y-%m-%dT%H:%M:%S"),
         :text => params['Body']
       })
-      #@data.push(msg)
+
+      msg = params['Body']
+      puts msg
     end
+
+    @district_dummy.update(sms: msg)
 
   #  puts message
     render :nothing => true
