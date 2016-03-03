@@ -42,6 +42,20 @@ class DistrictsController < ApplicationController
       })
 
       msg = params['Body']
+      msg = msg.downcase
+
+      if msg.include?("in")
+        #validate stuff
+        #create a new shift
+      elsif msg.include?("out")
+        #validates stuff
+        #finds the last shift for that carepair
+        #checks if last shift has a stop time
+        #updates stoptime if its blank WHICH IT SHOULD BE
+        #also updates stop_gps, stop_range, final_range
+      else
+        #send twilio response that you had a typo
+      end
     end
 
     @district_dummy.update(sms: msg)
