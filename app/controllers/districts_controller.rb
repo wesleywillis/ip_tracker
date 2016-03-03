@@ -1,6 +1,10 @@
 class DistrictsController < ApplicationController
-  socket = PusherClient::Socket.new(ENV["PUSHER_APP_KEY"])
-  socket.subscribe('provider_sms-development')
+  skip_before_filter :verify_authenticity_token, :only => :sms
+  Pusher.app_id = ENV["PUSHER_APP_ID"]
+  Pusher.key = ENV["PUSHER_APP_KEY"]
+  Pusher.secret = ENV["PUSHER_APP_SECRET"]
+  #socket = PusherClient::Socket.new(ENV["PUSHER_APP_KEY"])
+  #socket.subscribe('provider_sms-development')
 #  socket.connect(true)
   @data = []
   # Bind to a global event (can occur on either channel1 or channel2)
@@ -10,19 +14,23 @@ class DistrictsController < ApplicationController
 #  end
 
   def index
+    puts "@@@@_____________________________index is here"
     @districts = District.all
     render :layout => false
   end
 
-
   def sms
+    puts "@@@@_____________________________line 23"
+    socket = PusherClient::Socket.new(ENV["PUSHER_APP_KEY"])
+    socket.subscribe('provider_sms-development')
     socket.connect(true)
-
+    puts "@@@@_____________________________line 27"
     socket['provider_sms-development'].bind('channelevent') do |data|
+      puts "@@@@_____________________________line 29"
       nice_string = data.to_s
       @data.push(nice_string)
     end
-  if( params['AccountSid'] != ENV["TWILIO_ACCOUNT_SID"] )
+    if( params['AccountSid'] != ENV["TWILIO_ACCOUNT_SID"] )
      status 401
     else
       Pusher['sms'].trigger('sms_received', {
@@ -31,6 +39,7 @@ class DistrictsController < ApplicationController
         :text => params['Body']
       })
     end
+
   #  puts message
     render :nothing => true
 
