@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'districts#index'
 
+  post 'districts/sms' => 'districts#sms', as: :sms
+
   resources :districts do
     resources :clients
     resources :workers
