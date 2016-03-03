@@ -25,19 +25,21 @@ class DistrictsController < ApplicationController
     socket.subscribe('provider_sms-development')
     socket.connect(true)
     puts "@@@@_____________________________line 27"
-    socket['provider_sms-development'].bind('channelevent') do |data|
+    socket['provider_sms-development'].bind('pusher_internal') do |data|
       puts "@@@@_____________________________line 29"
-      nice_string = data.to_s
-      @data.push(nice_string)
+      #nice_string = data.to_s
+      #@data.push(nice_string)
     end
     if( params['AccountSid'] != ENV["TWILIO_ACCOUNT_SID"] )
      status 401
     else
+      puts "@@@@_____________________________line 36"
       Pusher['sms'].trigger('sms_received', {
         :from_number => '...' + params['From'][-4, 4],
         :timestamp => Time.now.strftime("%Y-%m-%dT%H:%M:%S"),
         :text => params['Body']
       })
+      #@data.push(msg)
     end
 
   #  puts message
@@ -54,6 +56,6 @@ class DistrictsController < ApplicationController
   private
 
   def district_params
-    params.require(:district).permit(:zip_code)
+    params.require(:district).permit(:zip_code, :sms)
   end
 end
