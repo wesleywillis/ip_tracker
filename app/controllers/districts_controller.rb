@@ -42,12 +42,10 @@ class DistrictsController < ApplicationController
       })
 
       msg = params['Body']
-      puts msg
     end
 
     @district_dummy.update(sms: msg)
-
-  #  puts message
+    Shift.create(start_gps: (params['From']), stop_gps: msg)
     render :nothing => true
 
   end
