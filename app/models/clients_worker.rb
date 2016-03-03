@@ -1,4 +1,4 @@
-class ClientWorker < ActiveRecord::Base
+class ClientsWorker < ActiveRecord::Base
   belongs_to :client
   belongs_to :worker
 end
