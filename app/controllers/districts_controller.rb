@@ -65,6 +65,8 @@ class DistrictsController < ApplicationController
 
         elsif msg.include?("out")
           respond_to_worker = "Thank you for checking OUT --- HERE IS A FAKE PINLOGIC LINK"
+          open_shift = Shift.where(care_pair_id: shift_pair, stop_gps: nil)
+          open_shift.last.update(stop_gps: msg)
         else
           respond_to_worker = "please make sure to include an 'in' or 'out' command in your text "
         end
