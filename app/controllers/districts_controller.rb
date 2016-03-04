@@ -3,15 +3,6 @@ class DistrictsController < ApplicationController
   Pusher.app_id = ENV["PUSHER_APP_ID"]
   Pusher.key = ENV["PUSHER_APP_KEY"]
   Pusher.secret = ENV["PUSHER_APP_SECRET"]
-  #socket = PusherClient::Socket.new(ENV["PUSHER_APP_KEY"])
-  #socket.subscribe('provider_sms-development')
-#  socket.connect(true)
-  @data = []
-  # Bind to a global event (can occur on either channel1 or channel2)
-#  socket['provider_sms-development'].bind('channelevent') do |data|
-#    nice_string = data.to_s
-#    @data.push(nice_string)
-#  end
 
   def index
     puts "@@@@_____________________________index is here"
@@ -40,7 +31,7 @@ class DistrictsController < ApplicationController
         :timestamp => Time.now.strftime("%Y-%m-%dT%H:%M:%S"),
         :text => params['Body']
       })
-
+      worker_phone = params['From']
       msg = params['Body']
       msg = msg.downcase
 
@@ -60,6 +51,26 @@ class DistrictsController < ApplicationController
 
     @district_dummy.update(sms: msg)
     Shift.create(start_gps: (params['From']), stop_gps: msg)
+
+    @message = "you're getting somewhere"
+
+    #twiml = Twilio::TwiML::Response.new do |r|
+    #r.Message message
+    #end
+    #twiml.text
+
+    account_sid = ENV['TWILIO_ACCOUNT_SID']
+    auth_token = ENV['TWILIO_AUTH_TOKEN']
+    client = Twilio::REST::Client.new account_sid, auth_token
+
+    from = "+17084773666"
+    client.account.messages.create(
+    :from => from,
+    :to => worker_phone,
+    :body => @message
+  )
+  puts "Sent message to #{value}"
+
     render :nothing => true
 
   end
