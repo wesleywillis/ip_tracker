@@ -3,16 +3,6 @@ class DistrictsController < ApplicationController
   Pusher.app_id = ENV["PUSHER_APP_ID"]
   Pusher.key = ENV["PUSHER_APP_KEY"]
   Pusher.secret = ENV["PUSHER_APP_SECRET"]
-  #socket = PusherClient::Socket.new(ENV["PUSHER_APP_KEY"])
-  #socket.subscribe('provider_sms-development')
-#  socket.connect(true)
-#  @data = []
-  # Bind to a global event (can occur on either channel1 or channel2)
-#  socket['provider_sms-development'].bind('channelevent') do |data|
-#    nice_string = data.to_s
-#    @data.push(nice_string)
-#  end
-
 
   def index
     puts "@@@@_____________________________index is here"
@@ -27,11 +17,14 @@ class DistrictsController < ApplicationController
     socket.subscribe('provider_sms-development')
     socket.connect(true)
     puts "@@@@_____________________________line 27"
+
+    #not sure what's going on below but it was part of the doc directions, code seems to not be getting hit
     socket['provider_sms-development'].bind('pusher_internal') do |data|
       puts "@@@@_____________________________line 29"
       #nice_string = data.to_s
       #@data.push(nice_string)
     end
+
     if( params['AccountSid'] != ENV["TWILIO_ACCOUNT_SID"] )
      status 401
     else
@@ -79,25 +72,6 @@ class DistrictsController < ApplicationController
       :to => worker_phone,
       :body => "#{respond_to_worker}"
       )
-
-
-  #    if msg.include?("in")
-  #      check_pair = CarePair.where(client_id: client_num, worker_id: worker_num)
-  #      #validate stuff
-  #      #create a new shift
-  #    elsif msg.include?("out")
-  #      #validates stuff
-  #      #finds the last shift for that carepair
-  #      #checks if last shift has a stop time
-  #      #updates stoptime if its blank WHICH IT SHOULD BE
-  #      #also updates stop_gps, stop_range, final_range
-  #    else
-  #      #send twilio response that you had a typo
-  #    end
-  #  end
-
-    @district_dummy.update(sms: msg)
-  #  Shift.create(start_gps: (params['From']), stop_gps: msg)
 
     render :nothing => true
   end
