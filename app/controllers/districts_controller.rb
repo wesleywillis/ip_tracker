@@ -50,7 +50,7 @@ class DistrictsController < ApplicationController
       client_num = msg[/#{client_marker}(.*?)#{end_marker}/m, 1].to_i
       worker_num = msg[/#{worker_marker}(.*?)#{end_marker}/m, 1].to_i
       check_pair = CarePair.where(client_id: client_num, worker_id: worker_num)
-      twilio_client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_ACCOUNT_TOKEN"]
+      twilio_client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
       from_admin = ENV["TWILIO_PHONE"]
       worker_phone = params['From']
 
