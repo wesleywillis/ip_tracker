@@ -1,5 +1,5 @@
 class DistrictsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => :sms
+  skip_before_filter :verify_authenticity_token, :only => [:sms, :gps]
   Pusher.app_id = ENV["PUSHER_APP_ID"]
   Pusher.key = ENV["PUSHER_APP_KEY"]
   Pusher.secret = ENV["PUSHER_APP_SECRET"]
@@ -8,6 +8,10 @@ class DistrictsController < ApplicationController
     puts "@@@@_____________________________index is here"
     @districts = District.all
     render :layout => false
+  end
+
+  def gps
+    render :nothing => true
   end
 
   def sms
@@ -53,9 +57,12 @@ class DistrictsController < ApplicationController
       if check_pair.length == 1
         shift_pair = check_pair[0].id
         if msg.include?("in")
-          respond_to_worker = "Thank you for checking IN --- HERE IS A FAKE PINLOGIC LINK"
+          headers ={"x-user-id"=> ENV['PINLOGIC_CLIENT_ID'], "x-auth-token"=> ENV["PINLOGIC_AUTH_TOKEN"]}
+          pin_response = HTTParty.post("https://api.pinlogic.co/locate/request/",:headers => headers)
+          pin_response = JSON.parse(pin_response.body)
+          pin_response = pin_response['request_url']
+          respond_to_worker = "Thank you for checking IN --- HERE IS A FAKE PINLOGIC LINK #{pin_response}"
           Shift.create(care_pair_id: shift_pair, start_gps: msg)
-
         elsif msg.include?("out")
           respond_to_worker = "Thank you for checking OUT --- HERE IS A FAKE PINLOGIC LINK"
           open_shift = Shift.where(care_pair_id: shift_pair, stop_gps: nil)
