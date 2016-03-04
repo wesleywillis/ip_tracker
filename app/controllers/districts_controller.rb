@@ -13,6 +13,7 @@ class DistrictsController < ApplicationController
 #    @data.push(nice_string)
 #  end
 
+
   def index
     puts "@@@@_____________________________index is here"
     @districts = District.all
@@ -42,17 +43,19 @@ class DistrictsController < ApplicationController
       })
     end
 
+      worker_phone = params['From']
       msg = params['Body']
       msg = msg.downcase
+
       client_marker = "c"
       worker_marker = "w"
       end_marker = "#"
+
       client_num = msg[/#{client_marker}(.*?)#{end_marker}/m, 1].to_i
       worker_num = msg[/#{worker_marker}(.*?)#{end_marker}/m, 1].to_i
       check_pair = CarePair.where(client_id: client_num, worker_id: worker_num)
       twilio_client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
       from_admin = ENV["TWILIO_PHONE"]
-      worker_phone = params['From']
 
       if check_pair.length == 1
         respond_to_worker = "way to go - you are legit!!!  "
@@ -84,6 +87,7 @@ class DistrictsController < ApplicationController
 
     @district_dummy.update(sms: msg)
     Shift.create(start_gps: (params['From']), stop_gps: msg)
+
     render :nothing => true
   end
 
