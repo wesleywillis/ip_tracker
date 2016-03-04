@@ -58,8 +58,11 @@ class DistrictsController < ApplicationController
       from_admin = ENV["TWILIO_PHONE"]
 
       if check_pair.length == 1
+        shift_pair = check_pair[0].id
         if msg.include?("in")
           respond_to_worker = "Thank you for checking IN --- HERE IS A FAKE PINLOGIC LINK"
+          Shift.create(care_pair_id: shift_pair, start_gps: msg)
+
         elsif msg.include?("out")
           respond_to_worker = "Thank you for checking OUT --- HERE IS A FAKE PINLOGIC LINK"
         else
@@ -92,7 +95,7 @@ class DistrictsController < ApplicationController
   #  end
 
     @district_dummy.update(sms: msg)
-    Shift.create(start_gps: (params['From']), stop_gps: msg)
+  #  Shift.create(start_gps: (params['From']), stop_gps: msg)
 
     render :nothing => true
   end
