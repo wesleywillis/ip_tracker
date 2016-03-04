@@ -11,6 +11,7 @@ class WorkersController < ApplicationController
   def show
     id = params[:id]
     @worker = Worker.find(id)
+    @pairs = CarePair.where(worker_id: id)
   end
 
   def create

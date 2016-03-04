@@ -1,3 +1,14 @@
 <h2>Worker Name: <%= @worker.first_name + " " + @worker.last_name %></h2>
 <h2>Phone Number: <%= @worker.primary_phone %></h2>
 <h2> ID Number: <%= @worker.id %></h2>
+<ul>
+  <% @pairs.each do |pair| %>
+      <li>Client: <%= pair.client.first_name + " " + pair.client.last_name %></li>
+      <ul>
+      <%pair.shifts.each do |shift|%>
+        <li>Start Time: <%= shift.created_at %></li>
+        <li>Stop Time: <%= shift.updated_at %></li>
+      <% end %>
+      </ul>  
+  <% end %>
+</ul>
