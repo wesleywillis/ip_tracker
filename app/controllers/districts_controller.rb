@@ -58,7 +58,13 @@ class DistrictsController < ApplicationController
       from_admin = ENV["TWILIO_PHONE"]
 
       if check_pair.length == 1
-        respond_to_worker = "way to go - you are legit!!!  "
+        if msg.include?("in")
+          respond_to_worker = "Thank you for checking IN --- HERE IS A FAKE PINLOGIC LINK"
+        elsif msg.include?("out")
+          respond_to_worker = "Thank you for checking OUT --- HERE IS A FAKE PINLOGIC LINK"
+        else
+          respond_to_worker = "please make sure to include an 'in' or 'out' command in your text "
+        end
       else
         respond_to_worker = "You did not enter a valid worker and client pair"
       end
