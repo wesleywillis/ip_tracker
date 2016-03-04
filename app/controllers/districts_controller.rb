@@ -6,7 +6,7 @@ class DistrictsController < ApplicationController
   #socket = PusherClient::Socket.new(ENV["PUSHER_APP_KEY"])
   #socket.subscribe('provider_sms-development')
 #  socket.connect(true)
-  @data = []
+#  @data = []
   # Bind to a global event (can occur on either channel1 or channel2)
 #  socket['provider_sms-development'].bind('channelevent') do |data|
 #    nice_string = data.to_s
@@ -40,28 +40,51 @@ class DistrictsController < ApplicationController
         :timestamp => Time.now.strftime("%Y-%m-%dT%H:%M:%S"),
         :text => params['Body']
       })
+    end
 
       msg = params['Body']
       msg = msg.downcase
+      client_marker = "c"
+      worker_marker = "w"
+      end_marker = "#"
+      client_num = msg[/#{client_marker}(.*?)#{end_marker}/m, 1].to_i
+      worker_num = msg[/#{worker_marker}(.*?)#{end_marker}/m, 1].to_i
+      check_pair = CarePair.where(client_id: client_num, worker_id: worker_num)
+      twilio_client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_ACCOUNT_TOKEN"]
+      from_admin = ENV["TWILIO_PHONE"]
+      worker_phone = params['From']
 
-      if msg.include?("in")
-        #validate stuff
-        #create a new shift
-      elsif msg.include?("out")
-        #validates stuff
-        #finds the last shift for that carepair
-        #checks if last shift has a stop time
-        #updates stoptime if its blank WHICH IT SHOULD BE
-        #also updates stop_gps, stop_range, final_range
+      if check_pair.length == 1
+        respond_to_worker = "way to go - you are legit!!!  "
       else
-        #send twilio response that you had a typo
+        respond_to_worker = "You did not enter a valid worker and client pair"
       end
-    end
+
+      twilio_client.account.messages.create(
+      :from => from_admin,
+      :to => worker_phone,
+      :body => "#{respond_to_worker}"
+      )
+
+
+  #    if msg.include?("in")
+  #      check_pair = CarePair.where(client_id: client_num, worker_id: worker_num)
+  #      #validate stuff
+  #      #create a new shift
+  #    elsif msg.include?("out")
+  #      #validates stuff
+  #      #finds the last shift for that carepair
+  #      #checks if last shift has a stop time
+  #      #updates stoptime if its blank WHICH IT SHOULD BE
+  #      #also updates stop_gps, stop_range, final_range
+  #    else
+  #      #send twilio response that you had a typo
+  #    end
+  #  end
 
     @district_dummy.update(sms: msg)
     Shift.create(start_gps: (params['From']), stop_gps: msg)
     render :nothing => true
-
   end
 
 
