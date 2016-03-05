@@ -13,8 +13,11 @@ class DistrictsController < ApplicationController
   end
 
   def gps
-    new_shift = Shift.where(care_pair_id: shift_pair, start_gps: nil)
-    new_shift.last.update(start_gps: msg)
+    #new_shift = Shift.where(gps_id: params[:request_id])
+    if params[:progress] == "located"
+      new_shift = Shift.where(gps_id: params[:request_id])
+      new_shift.last.update(start_gps: params[:progress])
+    end
     render :nothing => true
   end
 
@@ -58,10 +61,10 @@ class DistrictsController < ApplicationController
         if msg.include?("in")
           headers ={"x-user-id"=> ENV['PINLOGIC_CLIENT_ID'], "x-auth-token"=> ENV["PINLOGIC_AUTH_TOKEN"]}
           pin_response = HTTParty.post("https://api.pinlogic.co/locate/request/",:headers => headers)
-          pin_response = JSON.parse(pin_response.body)
-          pin_response = pin_response['request_url']
-          gps_id = pin_response['request_id']
-          respond_to_worker = "Thank you for checking IN --- HERE IS A FAKE PINLOGIC LINK #{pin_response}"
+          pin_data = JSON.parse(pin_response.body)
+          pin_url = pin_data['request_url']
+          gps_id = pin_data['request_id']
+          respond_to_worker = "Thank you for checking IN --- HERE IS A FAKE PINLOGIC LINK #{pin_url}"
           Shift.create(care_pair_id: shift_pair, gps_id: gps_id)
         elsif msg.include?("out")
           respond_to_worker = "Thank you for checking OUT --- HERE IS A FAKE PINLOGIC LINK"
@@ -70,6 +73,8 @@ class DistrictsController < ApplicationController
         else
           respond_to_worker = "please make sure to include an 'in' or 'out' command in your text "
         end
+
+
       else
         respond_to_worker = "You did not enter a valid worker and client pair"
       end
