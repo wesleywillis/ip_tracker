@@ -7,6 +7,8 @@ class DistrictsController < ApplicationController
   def index
     puts "@@@@_____________________________index is here"
     @districts = District.all
+    @workers = Worker.all
+    @clients = Client.all
     render :layout => false
   end
 

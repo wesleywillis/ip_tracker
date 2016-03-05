@@ -1,6 +1,7 @@
 <h2>Worker Name: <%= @worker.first_name + " " + @worker.last_name %></h2>
 <h2>Phone Number: <%= @worker.primary_phone %></h2>
 <h2> ID Number: <%= @worker.id %></h2>
+<%= link_to "Edit Worker", edit_district_worker_path(@district, @worker.id), class: "btn btn-default" %>
 <ul>
   <% @pairs.each do |pair| %>
       <li>Client: <%= pair.client.first_name + " " + pair.client.last_name %></li>
@@ -9,6 +10,6 @@
         <li>Start Time: <%= shift.created_at %></li>
         <li>Stop Time: <%= shift.updated_at %></li>
       <% end %>
-      </ul>  
+      </ul>
   <% end %>
 </ul>

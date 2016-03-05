@@ -9,6 +9,7 @@ class ClientsController < ApplicationController
   end
 
   def show
+    @district = params[:district_id]
     id = params[:id]
     @client = Client.find(id)
   end
