@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'districts#index'
 
   post 'districts/sms' => 'districts#sms', as: :sms
+  post 'districts/gps' => 'districts#gps', as: :gps
 
   resources :districts do
     resources :clients
