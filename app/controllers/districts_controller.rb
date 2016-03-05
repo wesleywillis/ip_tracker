@@ -5,7 +5,6 @@ class DistrictsController < ApplicationController
   Pusher.secret = ENV["PUSHER_APP_SECRET"]
 
   def index
-    puts "@@@@_____________________________index is here"
     @districts = District.all
     @workers = Worker.all
     @clients = Client.all
@@ -13,7 +12,6 @@ class DistrictsController < ApplicationController
   end
 
   def gps
-    #new_shift = Shift.where(gps_id: params[:request_id])
     if params[:progress] == "located"
       new_shift = Shift.where(gps_id: params[:request_id])
       location_data = params[:location]
@@ -61,21 +59,27 @@ class DistrictsController < ApplicationController
       check_pair = CarePair.where(client_id: client_num, worker_id: worker_num)
       twilio_client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
       from_admin = ENV["TWILIO_PHONE"]
+      pinlogic_headers ={"x-user-id"=> ENV['PINLOGIC_CLIENT_ID'], "x-auth-token"=> ENV["PINLOGIC_AUTH_TOKEN"]}
 
       if check_pair.length == 1
         shift_pair = check_pair[0].id
         if msg.include?("in")
-          headers ={"x-user-id"=> ENV['PINLOGIC_CLIENT_ID'], "x-auth-token"=> ENV["PINLOGIC_AUTH_TOKEN"]}
-          pin_response = HTTParty.post("https://api.pinlogic.co/locate/request/",:headers => headers)
+          #headers ={"x-user-id"=> ENV['PINLOGIC_CLIENT_ID'], "x-auth-token"=> ENV["PINLOGIC_AUTH_TOKEN"]}
+          pin_response = HTTParty.post("https://api.pinlogic.co/locate/request/",:headers => pinlogic_headers)
           pin_data = JSON.parse(pin_response.body)
           pin_url = pin_data['request_url']
           gps_id = pin_data['request_id']
-          respond_to_worker = "Thank you for checking IN --- HERE IS A FAKE PINLOGIC LINK #{pin_url}"
+          respond_to_worker = "Thank you for checking IN --- HERE IS YOUR PINLOGIC LINK #{pin_url}"
           Shift.create(care_pair_id: shift_pair, gps_id: gps_id)
         elsif msg.include?("out")
-          respond_to_worker = "Thank you for checking OUT --- HERE IS A FAKE PINLOGIC LINK"
-        #  open_shift = Shift.where(care_pair_id: shift_pair, stop_gps: nil)
-        #  open_shift.last.update(stop_gps: msg)
+          pin_response = HTTParty.post("https://api.pinlogic.co/locate/request/",:headers => pinlogic_headers)
+          pin_data = JSON.parse(pin_response.body)
+          pin_url = pin_data['request_url']
+          gps_id = pin_data['request_id']
+          respond_to_worker = "Thank you for checking OUT --- HERE IS YOUR PINLOGIC LINK #{pin_url}"
+          open_shift = Shift.where(care_pair_id: shift_pair).last
+          open_shift.update(gps_id: gps_id)
+
         else
           respond_to_worker = "please make sure to include an 'in' or 'out' command in your text "
         end
