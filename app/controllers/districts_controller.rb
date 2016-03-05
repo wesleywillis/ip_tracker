@@ -13,20 +13,18 @@ class DistrictsController < ApplicationController
   end
 
   def gps
+    new_shift = Shift.where(care_pair_id: shift_pair, start_gps: nil)
+    new_shift.last.update(start_gps: msg)
     render :nothing => true
   end
 
   def sms
-    puts "@@@@_____________________________line 23"
-    @district_dummy = District.find_by_id(1)
     socket = PusherClient::Socket.new(ENV["PUSHER_APP_KEY"])
     socket.subscribe('provider_sms-development')
     socket.connect(true)
-    puts "@@@@_____________________________line 27"
 
     #not sure what's going on below but it was part of the doc directions, code seems to not be getting hit
     socket['provider_sms-development'].bind('pusher_internal') do |data|
-      puts "@@@@_____________________________line 29"
       #nice_string = data.to_s
       #@data.push(nice_string)
     end
@@ -34,7 +32,6 @@ class DistrictsController < ApplicationController
     if( params['AccountSid'] != ENV["TWILIO_ACCOUNT_SID"] )
      status 401
     else
-      puts "@@@@_____________________________line 36"
       Pusher['sms'].trigger('sms_received', {
         :from_number => '...' + params['From'][-4, 4],
         :timestamp => Time.now.strftime("%Y-%m-%dT%H:%M:%S"),
@@ -63,12 +60,13 @@ class DistrictsController < ApplicationController
           pin_response = HTTParty.post("https://api.pinlogic.co/locate/request/",:headers => headers)
           pin_response = JSON.parse(pin_response.body)
           pin_response = pin_response['request_url']
+          gps_id = pin_response['request_id']
           respond_to_worker = "Thank you for checking IN --- HERE IS A FAKE PINLOGIC LINK #{pin_response}"
-          Shift.create(care_pair_id: shift_pair, start_gps: msg)
+          Shift.create(care_pair_id: shift_pair, gps_id: gps_id)
         elsif msg.include?("out")
           respond_to_worker = "Thank you for checking OUT --- HERE IS A FAKE PINLOGIC LINK"
-          open_shift = Shift.where(care_pair_id: shift_pair, stop_gps: nil)
-          open_shift.last.update(stop_gps: msg)
+        #  open_shift = Shift.where(care_pair_id: shift_pair, stop_gps: nil)
+        #  open_shift.last.update(stop_gps: msg)
         else
           respond_to_worker = "please make sure to include an 'in' or 'out' command in your text "
         end

@@ -15,8 +15,8 @@ seed_districts.each do |seed|
 end
 
 seed_clients = [
-  {first_name: "Fox", last_name: "Mulder", primary_phone: 7735551234},
-  {first_name: "Dana", last_name: "Sculley", primary_phone: 7734441234}
+  {first_name: "Fox", last_name: "Mulder", primary_phone: 7735551234, full_street_address: "1801 4th avenue west, seattle, WA"},
+  {first_name: "Dana", last_name: "Sculley", primary_phone: 7734441234, full_street_address: "325 Broadway E, Seattle, WA"}
 
 
 ]

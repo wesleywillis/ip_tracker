@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303230435) do
+ActiveRecord::Schema.define(version: 20160305211008) do
 
   create_table "care_pairs", force: :cascade do |t|
     t.integer  "client_id"
@@ -23,9 +23,12 @@ ActiveRecord::Schema.define(version: 20160303230435) do
   create_table "clients", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "primary_phone", limit: 8
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "primary_phone",       limit: 8
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "full_street_address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "districts", force: :cascade do |t|
@@ -51,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160303230435) do
     t.boolean  "final_range"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "gps_id"
   end
 
   create_table "workers", force: :cascade do |t|
