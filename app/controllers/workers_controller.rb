@@ -1,5 +1,6 @@
 class WorkersController < ApplicationController
   def index
+    @district = params[:district_id]
     @all_workers = Worker.all
   end
 

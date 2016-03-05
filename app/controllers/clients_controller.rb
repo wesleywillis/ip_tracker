@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
   def index
+    @district = params[:district_id]
     @all_clients = Client.all
   end
 
