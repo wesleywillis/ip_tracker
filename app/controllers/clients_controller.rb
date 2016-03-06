@@ -48,7 +48,7 @@ class ClientsController < ApplicationController
   private
 
   def client_params
-    params.require(:client).permit(:first_name, :last_name, :primary_phone, :full_street_address)
+    params.require(:client).permit(:first_name, :last_name, :primary_phone, :address, :city, :state)
   end
 
   def update_workers(client)
@@ -59,5 +59,5 @@ class ClientsController < ApplicationController
         client.workers << Worker.find(worker)
       end
     end
-  end  
+  end
 end
