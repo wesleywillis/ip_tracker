@@ -1,5 +1,6 @@
 class WorkersController < ApplicationController
   def index
+    @district = params[:district_id]
     @all_workers = Worker.all
   end
 
@@ -10,6 +11,7 @@ class WorkersController < ApplicationController
 
   def show
     id = params[:id]
+    @district = params[:district_id]
     @worker = Worker.find(id)
     @pairs = CarePair.where(worker_id: id)
   end
@@ -47,7 +49,7 @@ class WorkersController < ApplicationController
   private
 
   def worker_params
-    params.require(:worker).permit(:first_name, :last_name, :primary_phone)
+    params.require(:worker).permit(:first_name, :last_name, :primary_phone, :address, :city, :state)
   end
 
   def update_clients(worker)
