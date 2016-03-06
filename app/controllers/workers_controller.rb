@@ -49,7 +49,7 @@ class WorkersController < ApplicationController
   private
 
   def worker_params
-    params.require(:worker).permit(:first_name, :last_name, :primary_phone)
+    params.require(:worker).permit(:first_name, :last_name, :primary_phone, :address, :city, :state)
   end
 
   def update_clients(worker)

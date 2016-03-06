@@ -24,6 +24,10 @@
           <%= f.text_field :city, class: "form-control" %><br>
         </div>
         <div class="form-group">
+          <%= f.label :state %><br>
+          <%= f.text_field :state, class: "form-control" %><br>
+        </div>
+        <div class="form-group">
           <label for=:group>Select <%= select_title %> (hold shift to select more than one):</label>
           <%= select_tag "clients[]", options_for_select(group.collect{|x| [x.last_name + ", " + x.first_name,x.id]}, care_group.collect{|x| x.id}), {:multiple => :multiple, :size => 10} %>
         </div>
