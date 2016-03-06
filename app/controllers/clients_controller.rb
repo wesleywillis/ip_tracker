@@ -48,6 +48,16 @@ class ClientsController < ApplicationController
   private
 
   def client_params
-    params.require(:client).permit(:first_name, :last_name, :primary_phone)
+    params.require(:client).permit(:first_name, :last_name, :primary_phone, :full_street_address)
   end
+
+  def update_workers(client)
+    if !params[:workers].nil?
+      workers_array = params[:workers]
+      client.workers = []
+      workers_array.each do |worker|
+        client.workers << Worker.find(worker)
+      end
+    end
+  end  
 end
