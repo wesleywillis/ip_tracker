@@ -10,7 +10,7 @@ class Client < ActiveRecord::Base
     [address, city, state].compact.join(', ')
   end
 
-  geocoded_by :full_street_address   # can also be an IP address
-  after_validation :geocode          # auto-fetch coordinates
+  geocoded_by :full_street_address
+  #after_validation :geocode          
   after_save :geocode
 end
