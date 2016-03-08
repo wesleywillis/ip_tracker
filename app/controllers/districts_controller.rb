@@ -13,13 +13,16 @@ class DistrictsController < ApplicationController
 
   def gps
     if params[:progress] == "located"
-      new_shift = Shift.where(gps_id: params[:request_id])
+      new_shift = Shift.where(gps_id: params[:request_id]).last
       location_data = params[:location]
       coordinates = location_data[:latitude].to_s + " " + location_data[:longitude].to_s
-      if new_shift.last.start_gps == nil
-        new_shift.last.update(start_gps: coordinates)
+      if new_shift.start_gps == nil
+        new_shift.update(start_gps: coordinates)
+        new_shift.start_in_range?
       else
-        new_shift.last.update(stop_gps: coordinates)
+        new_shift.update(stop_gps: coordinates)
+        new_shift.stop_in_range?
+        new_shift.total_range?
       end
     end
     render :nothing => true
