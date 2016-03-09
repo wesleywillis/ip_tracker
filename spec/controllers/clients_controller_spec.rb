@@ -1,8 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe ClientsController, type: :controller do
+
   let :district do
     District.create(zip_code: "90120")
+  end
+
+  let (:good_params) do
+    {
+      client:{ first_name: "Simon", last_name: "Tam", primary_phone: 2223334444, address: "1215 4th Ave #600", city: "Seattle", state: "WA"}
+    }
+
   end
 
   describe "GET 'new'" do
@@ -13,26 +21,14 @@ RSpec.describe ClientsController, type: :controller do
     end
   end
 
-  #describe "POST create" do
-  #  it "updates c" do
-  #    VCR.use_cassette "client/seattle"
-  #    fill_in "first_name", with: "Simon"
-  #    fill_in "last_name", with: "Tam"
-  #    fill_in "primary_phone", with: 7775554444
-  #    fill_in "address", with: "1215 4th Ave #600"
-  #    fill_in "city", with: "Seattle"
-  #    fill_in "state", with: "WA"
-  #    click_on "Save"
-  #    expect(Client.last.latitude).to not_eq nil
-  #  end
-  #end
-
-#  describe "POST 'create'" do
-#    it "assigns client model matching lat and long when given address"
-#      visit new_district_client_path(District.find(1))
-#      fill_in ""
-#    end
-#  end
+  describe "POST create" do
+    it "adds latitude and longitude to client" do
+      VCR.use_cassette('client_responses', :record => :new_episodes) do
+        post :create, good_params, district_id: district.id
+        expect(Client.last.latitude).should_not be_nil
+      end
+    end
+  end
 
   describe "GET 'index'" do
     it "is successful" do
