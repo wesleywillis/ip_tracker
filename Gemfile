@@ -76,4 +76,5 @@ group :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'vcr', '~> 3.0', '>= 3.0.1'
+  gem 'fakeweb'
 end
