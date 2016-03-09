@@ -24,8 +24,8 @@
       "/Users/hailey/Desktop/provider_tracker/app/controllers/clients_controller.rb": [
         1,
         1,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         1,
@@ -101,10 +101,10 @@
         1,
         null,
         1,
-        0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
         1,
@@ -257,13 +257,13 @@
       "/Users/hailey/Desktop/provider_tracker/app/controllers/workers_controller.rb": [
         1,
         1,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         1,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         1,
@@ -412,6 +412,6 @@
         null
       ]
     },
-    "timestamp": 1457551555
+    "timestamp": 1457555724
   }
 }
