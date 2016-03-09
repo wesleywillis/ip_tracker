@@ -11,6 +11,10 @@ class DistrictsController < ApplicationController
     render :layout => false
   end
 
+  def letsencrypt
+    render plain: ENV['LE_AUTH_RESPONSE']
+  end
+
   def gps
     if params[:progress] == "located"
       new_shift = Shift.where(gps_id: params[:request_id]).last
