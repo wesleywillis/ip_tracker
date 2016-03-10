@@ -5,6 +5,13 @@ RSpec.describe WorkersController, type: :controller do
     District.create(zip_code: "90120")
   end
 
+  let (:good_params) do
+    {
+      district_id: district.id,
+      worker:{ first_name: "Malcolm", last_name: "Reynolds", primary_phone: 7773334444, address: "1000 4th Ave", city: "Seattle", state: "WA"}
+    }
+  end
+
   describe "GET 'new'" do
     it "responds successfully with a 200 status code" do
       get :new, district_id: district.id
@@ -18,6 +25,16 @@ RSpec.describe WorkersController, type: :controller do
     it "is successful" do
       get :index, district_id: district.id
       expect(response.status).to eq 200
+    end
+  end
+
+  describe "POST create" do
+    it "adds latitude and longitude to client" do
+      VCR.use_cassette('worker_responses', :record => :new_episodes) do
+        post :create, good_params
+        expect(Worker.last.latitude).should_not be_nil
+        expect(Worker.last).to have_attributes(:first_name => "Malcolm")
+      end
     end
   end
 end
