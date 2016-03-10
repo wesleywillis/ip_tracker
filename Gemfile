@@ -75,5 +75,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'guard-rspec'
-  gem 'vcr', '~> 3.0', '>= 3.0.1'  
+  gem 'vcr', '~> 3.0', '>= 3.0.1'
+  gem 'webmock'
 end

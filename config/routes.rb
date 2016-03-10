@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'districts#index'
 
+  get "/.well-known/acme-challenge/#{ENV['LE_AUTH_REQUEST']}", to: 'districts#letsencrypt'
+
+
   post 'districts/sms' => 'districts#sms', as: :sms
   post 'districts/gps' => 'districts#gps', as: :gps
 
