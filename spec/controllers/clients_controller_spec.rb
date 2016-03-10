@@ -8,7 +8,9 @@ RSpec.describe ClientsController, type: :controller do
 
   let (:good_params) do
     {
+      district_id: district.id,
       client:{ first_name: "Simon", last_name: "Tam", primary_phone: 2223334444, address: "1215 4th Ave #600", city: "Seattle", state: "WA"}
+
     }
 
   end
@@ -24,7 +26,7 @@ RSpec.describe ClientsController, type: :controller do
   describe "POST create" do
     it "adds latitude and longitude to client" do
       VCR.use_cassette('client_responses', :record => :new_episodes) do
-        post :create, good_params, district_id: district.id
+        post :create, good_params
         expect(Client.last.latitude).should_not be_nil
       end
     end
