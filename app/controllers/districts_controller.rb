@@ -8,7 +8,11 @@ class DistrictsController < ApplicationController
     @districts = District.all
     @workers = Worker.all
     @clients = Client.all
-    render :layout => false
+    if @districts.count == 1
+      redirect_to district_path(@districts.first)
+    else
+      render :layout => false
+    end  
   end
 
   def letsencrypt
