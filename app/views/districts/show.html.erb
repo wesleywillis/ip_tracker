@@ -1,4 +1,4 @@
-<h2><%= link_to "Add a Client", new_district_client_path(@district), :class => 'btn btn-large btn-primary' %></h2>
-<h2><%= link_to "Add a Worker", new_district_worker_path(@district), :class => 'btn btn-large btn-primary' %></h2>
-<h2><%= link_to "View All Clients", district_clients_path(@district), :class => 'btn btn-large btn-warning' %></h2>
-<h2><%= link_to "View All Workers", district_workers_path(@district), :class => 'btn btn-large btn-warning' %></h2>
+<h2><%= link_to "Add a Client", new_district_client_path(@district), remote: true, :class => 'btn btn-large btn-primary' %></h2>
+<h2><%= link_to "Add a Worker", new_district_worker_path(@district), remote: true, :class => 'btn btn-large btn-primary' %></h2>
+<h2><%= link_to "View All Clients", district_clients_path(@district), remote: true, :class => 'all-clients-button btn btn-large btn-warning' %></h2>
+<h2><%= link_to "View All Workers", district_workers_path(@district), remote: true, :class => 'all-workers-button btn btn-large btn-warning' %></h2>

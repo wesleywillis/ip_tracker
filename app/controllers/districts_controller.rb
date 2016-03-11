@@ -1,5 +1,7 @@
 class DistrictsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:sms, :gps]
+  respond_to :html
+  respond_to :js
   Pusher.app_id = ENV["PUSHER_APP_ID"]
   Pusher.key = ENV["PUSHER_APP_KEY"]
   Pusher.secret = ENV["PUSHER_APP_SECRET"]
@@ -12,7 +14,7 @@ class DistrictsController < ApplicationController
       redirect_to district_path(@districts.first)
     else
       render :layout => false
-    end  
+    end
   end
 
   def letsencrypt

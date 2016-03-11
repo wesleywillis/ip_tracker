@@ -2,6 +2,9 @@ class ClientsController < ApplicationController
   def index
     @district = params[:district_id]
     @all_clients = Client.all
+    respond_to do |format|
+      format.js
+    end        
   end
 
   def new

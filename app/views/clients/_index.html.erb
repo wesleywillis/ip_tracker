@@ -1,0 +1,7 @@
+<%= div_for @all_clients do %>
+  <h2><%= link_to "View All Clients", district_clients_path(@district), remote: true, :class => 'all-clients-button btn btn-large btn-warning' %></h2>
+
+  <%= render partial:'table',
+  locals:{ group: @all_clients}%>
+
+<% end %>
