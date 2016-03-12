@@ -1,0 +1,4 @@
+<%= div_for(@all_workers, class: "workers") do %>
+  <%= render partial:'table',
+    locals:{ group: @all_workers}%>
+<% end %>
