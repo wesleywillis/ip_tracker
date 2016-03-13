@@ -14,8 +14,24 @@ class Client < ActiveRecord::Base
   after_validation :geocode          # auto-fetch coordinates
   after_save :geocode
 
-  def dormant_case
-    #want to issue alert if client has no workers
-    #want to issue alert if client has not had and workers register shifts with them for 7 days
+  def self.dormant_cases
+    clients = Client.all
+    dormant_hash = {}
+    clients.each do |client|
+      recent_count = 0
+      pairs = CarePair.where(client_id: client)
+      if pairs.count == 0
+        dormant_hash[client] = 0
+      else
+        pairs.each do |pair|
+          recent = pair.shifts.where(updated_at: 1.week.ago..Date.today)
+          recent_count += recent.count
+        end
+      end
+      if recent_count > 0
+        dormant_hash[client] = 0
+      end
+    end
+    return dormant_hash
   end
 end

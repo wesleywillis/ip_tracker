@@ -4,23 +4,13 @@
   <title>ProviderTracker</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+   <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
   <link href='https://fonts.googleapis.com/css?family=Poppins:400,300' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div class="jumbotron chicagoblue">
       <h1 class="title">GPS<span class="glyphicon glyphicon-check" aria-hidden="true"></span>TimeClock</h1>
-    <div class="container col-xs-4">
-      <button class="btn btn-default btn-lg btn-link circle-glyph" style="font-size:36px;">
-        <span class="glyphicon glyphicon-map-marker"></span>
-      </button>
-        <span class="badge badge-notify">3</span>
-      <button class="btn btn-default btn-lg btn-link circle-glyph" style="font-size:36px;">
-        <span class="glyphicon glyphicon-bell"></span>
-      </button>
-        <span class="badge badge-notify">3</span>
-    </div>
-  </div>
   <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <ul class="nav nav-pills">
@@ -35,7 +25,9 @@
       </li>
     </ul>
   </div>
-</nav>
+  </nav>
+  </div>
+
 <%= yield %>
 
 </body>
