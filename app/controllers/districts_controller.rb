@@ -12,7 +12,7 @@ class DistrictsController < ApplicationController
       redirect_to district_path(@districts.first)
     else
       render :layout => false
-    end  
+    end
   end
 
   def letsencrypt
@@ -113,6 +113,8 @@ class DistrictsController < ApplicationController
   def show
     id = params[:id]
     @district = District.find(id)
+    @dormant = Client.dormant_cases
+    @false_shifts = Shift.where(final_range: false)
   end
 
   private

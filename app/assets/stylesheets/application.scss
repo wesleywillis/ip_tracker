@@ -1,21 +1,38 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
 
- */
- // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "font-awesome";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.chicagoblue {
-  background: #58B9F7
+.jumbotron {
+  background:
+  linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.6)
+    ),
+  image-url("phone_splash.jpeg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  padding-bottom: 60 px;
+  color: white;
+  .title {
+    padding-top: 30%;
+    font-family: "Poppins";
+    font-weight: 500;
+    font-style: normal;
+    text-shadow: 0 1px 0 black;
+  }
 }
+
+  .badge-notify{
+   background:red;
+   position:relative;
+   top: -20px;
+   left: -35px;
+  }
+
+  .btn-round.btn-lg {
+    width: 48px;
+    height: 48px;
+    background-color: blue
+  }
