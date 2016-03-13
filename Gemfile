@@ -36,9 +36,9 @@ gem 'pusher'
 
 gem 'pusher-client'
 
-gem "breadcrumbs_on_rails"
-
 gem "geocoder"
+
+gem "font-awesome-rails"
 
 
 # Use ActiveModel has_secure_password

@@ -1,4 +1,17 @@
-<h2><%= link_to "Add a Client", new_district_client_path(@district), :class => 'btn btn-large btn-primary' %></h2>
+<%= link_to new_district_client_path(@district), :class => 'btn btn-large btn-primary' do %>
+  <i class="glyphicon glyphicon-user"> Add Client</i>
+<% end %>
 <h2><%= link_to "Add a Worker", new_district_worker_path(@district), :class => 'btn btn-large btn-primary' %></h2>
 <h2><%= link_to "View All Clients", district_clients_path(@district), :class => 'btn btn-large btn-warning' %></h2>
 <h2><%= link_to "View All Workers", district_workers_path(@district), :class => 'btn btn-large btn-warning' %></h2>
+<button type="button" class="btn btn-default btn-lg btn-round"><span class="glyphicon glyphicon-plus"></span></button>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
