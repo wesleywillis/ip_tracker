@@ -51,4 +51,13 @@ class Shift < ActiveRecord::Base
       shift.update(alert_table: true)
     end
   end
+
+  def collect_bad_shifts
+    Shift.where(alert_admin: true && alert_table: true)
+  end
+
+  def dismiss_shift_alert
+    self.update(alert_admin: false)
+    self.update(alert_table: false)
+  end
 end
