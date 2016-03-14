@@ -14,6 +14,7 @@ class Client < ActiveRecord::Base
   after_validation :geocode          # auto-fetch coordinates
   after_save :geocode
 
+#i know this has to be the slowest way to do this
   def self.dormant_cases
     clients = Client.all
     dormant_hash = {}
