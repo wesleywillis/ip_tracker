@@ -1,20 +1,20 @@
-
-
-<%= pie_chart Client.group(:first_name).count %>
-<%= pie_chart Shift.group(:final_range).count %>
-
-<div class="container col-xs-4">
-  <button class="btn btn-default btn-lg btn-link circle-glyph" style="font-size:36px;">
-    <span class="glyphicon glyphicon-map-marker"></span>
-  </button>
-    <span class="badge badge-notify"><%=@false_shifts.count%></span>
-  <button class="btn btn-default btn-lg btn-link circle-glyph" style="font-size:36px;">
-    <span class="glyphicon glyphicon-bell"></span>
-  </button>
-    <span class="badge badge-notify"><%=@dormant.count%></span>
-</div>
-
-<h2><%= link_to "Add a Client", new_district_client_path(@district), :class => 'btn btn-large btn-primary' %></h2>
-<h2><%= link_to "Add a Worker", new_district_worker_path(@district), :class => 'btn btn-large btn-primary' %></h2>
-<h2><%= link_to "View All Clients", district_clients_path(@district), :class => 'btn btn-large btn-warning' %></h2>
-<h2><%= link_to "View All Workers", district_workers_path(@district), :class => 'btn btn-large btn-warning' %></h2>
+  <div class="row">
+    <div class="col-md-2">
+      <%= link_to "Add a Client", new_district_client_path(@district), :class => 'btn btn-lg btn-primary' %>
+    </div>
+    <div class="col-md-2">
+      <%= link_to "Add a Worker", new_district_worker_path(@district), :class => 'btn btn-lg btn-primary' %>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-default btn-lg btn-link circle-glyph" style="font-size:36px;">
+        <span class="glyphicon glyphicon-map-marker"></span>
+      </button>
+      <span class="badge badge-notify"><%=@false_shifts.count%></span>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-default btn-lg btn-link circle-glyph" style="font-size:36px;">
+        <span class="glyphicon glyphicon-bell"></span>
+      </button>
+        <span class="badge badge-notify"><%=@dormant.count%></span>
+      </div>
+    </div>
