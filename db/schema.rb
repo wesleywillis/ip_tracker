@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314213257) do
+ActiveRecord::Schema.define(version: 20160314225935) do
 
   create_table "care_pairs", force: :cascade do |t|
     t.integer  "client_id"
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 20160314213257) do
     t.string   "gps_id"
     t.float    "shift_minutes"
     t.boolean  "alert_admin",   default: false
-    t.boolean  "alert_table"
   end
 
   create_table "workers", force: :cascade do |t|
