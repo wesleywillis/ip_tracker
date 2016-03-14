@@ -1,7 +1,41 @@
-<h2>Worker Name: <%= @worker.first_name + " " + @worker.last_name %></h2>
-<h2>Phone Number: <%= @worker.primary_phone %></h2>
-<h2> ID Number: <%= @worker.id %></h2>
-<%= link_to "Edit Worker", edit_district_worker_path(@district, @worker.id), class: "btn btn-default" %>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Worker Name: <%= @worker.first_name + " " + @worker.last_name %></h3>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">ID Number: <%= @worker.id %></li>
+    <li class="list-group-item">Phone Number: <%= @worker.primary_phone %></li>
+    <li class="list-group-item">Address: <%= @worker.address.split.map(&:capitalize).join(' ') %></li>
+    <li class="list-group-item">City: <%= @worker.city.capitalize %></li>
+    <li class="list-group-item">State: <%= @worker.state.upcase %></li>
+    <li class="list-group-item"><%= link_to "Edit Worker", edit_district_worker_path(@district, @worker.id), class: "btn btn-primary" %></li>
+  </ul>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Worker's Clients</h3>
+  </div>
+  <table class="table table-hover">
+  <tr>
+    <th> ID # </th>
+    <th> First Name </th>
+    <th> Last Name </th>
+    <th> Phone Number </th>
+    <th> More Details... </th>
+  </tr>
+  <% @worker.clients.each do |client| %>
+    <tr>
+      <td><strong><%= client.id %><strong></td>
+      <td><%= client.first_name %></td>
+      <td><%= client.last_name %></td>
+      <td><%= client.primary_phone %></td>
+      <td><%= link_to '<i class="fa fa-info-circle fa-2x"></i>'.html_safe, district_client_path(params[:district_id], client)%></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+<h1> Shifts </h1>
 <ul>
   <% @pairs.each do |pair| %>
       <li>Client: <%= pair.client.first_name + " " + pair.client.last_name %></li>
