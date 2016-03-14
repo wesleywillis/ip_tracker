@@ -31,6 +31,7 @@ class DistrictsController < ApplicationController
         new_shift.update(stop_gps: coordinates)
         new_shift.stop_in_range?
         new_shift.total_range?
+        new_shift.shift_length
       end
     end
     render :nothing => true

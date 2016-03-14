@@ -38,4 +38,8 @@ class Shift < ActiveRecord::Base
       self.update(final_range: false)
     end
   end
-end
+
+  def shift_length
+    self.update(shift_minutes: ((self.updated_at - self.created_at)/60.0)
+  end
+end  
