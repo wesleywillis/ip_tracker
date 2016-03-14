@@ -36,10 +36,19 @@ class Shift < ActiveRecord::Base
       self.update(final_range: true)
     else
       self.update(final_range: false)
+      self.update(alert_admin: true)
+      self.update(alert_table: false)
     end
   end
 
   def shift_length
     self.update(shift_minutes: ((self.updated_at - self.created_at)/60.0))
+  end
+
+  def new_bad_shift
+    new_alerts = Shift.where(alert_admin: true && alert_table: false)
+    new_alerts.each do |shift|
+      shift.update(alert_table: true)
+    end
   end
 end
