@@ -110,9 +110,6 @@ class DistrictsController < ApplicationController
     render :nothing => true
   end
 
-  def dormant
-  end
-
   def show
     id = params[:id]
     @district = District.find(id)
