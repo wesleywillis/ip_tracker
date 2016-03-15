@@ -14,3 +14,7 @@ setInterval(function(){
   });
 
 }, 1000);
+
+$('span').click( function(){
+    $(this).toggleClass('glyphicon-remove-circle').toggleClass('glyphicon-ok-circle');
+});

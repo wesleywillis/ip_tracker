@@ -39,7 +39,8 @@
 
   .glyphicon.glyphicon-remove-circle {
       font-size: 30px;
-      color: red;
+      // color: #a94442; bootstraps default text color, too dull
+      color: #bb3330
   }
 
   .alert-icon{
