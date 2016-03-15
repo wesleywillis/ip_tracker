@@ -13,8 +13,8 @@ Rails.application.routes.draw do
 
   get 'api/districts/:id/shifts', to: 'api_alerts#bad_shifts'
   get 'api/districts/:id/dormant', to: 'api_alerts#dormant_cases'
-  get 'districts/:id/dormant', to: 'districts#dormant'
-  get 'districts/:id/shift_alerts', to: 'districts#shift_alerts'
+  get 'districts/:id/dormant', to: 'districts#dormant', as: :dormant
+  get 'districts/:id/shift_alerts', to: 'districts#shift_alerts', as: :shift_alerts
 
   resources :districts do
     resources :clients

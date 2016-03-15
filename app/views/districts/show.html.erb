@@ -7,14 +7,16 @@
     </div>
     <div class="col-md-2">
       <button class="btn btn-default btn-lg btn-link circle-glyph" style="font-size:36px;">
-        <span class="glyphicon glyphicon-map-marker"></span>
+        <span><%= link_to '<i class="glyphicon glyphicon-map-marker"></i>'.html_safe, shift_alerts_path(@district)%></span>
       </button>
       <span class="badge badge-notify js-bad-shifts">29</span>
     </div>
     <div class="col-md-2">
       <button class="btn btn-default btn-lg btn-link circle-glyph" style="font-size:36px;">
-        <span class="glyphicon glyphicon-bell"></span>
+        <span><%= link_to '<i class="glyphicon glyphicon-bell"></i>'.html_safe, dormant_path(@district)%></span>
       </button>
         <span class="badge badge-notify js-dormant-cases">76</span>
       </div>
     </div>
+
+    <%= link_to '<i class="glyphicon glyphicon-map-marker"></i>'.html_safe, shift_alerts_path(@district)%>
