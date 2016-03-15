@@ -4,12 +4,6 @@ class ClientsController < ApplicationController
     @all_clients = Client.all
   end
 
-  def dormant
-  end
-
-  def shift_alerts
-  end
-
   def new
     @client = Client.new
     @all_workers = Worker.all

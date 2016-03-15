@@ -113,10 +113,6 @@ class DistrictsController < ApplicationController
   def dormant
   end
 
-  def shift_alerts
-    @bad_shifts = Shift.collect_bad_shifts
-  end
-
   def show
     id = params[:id]
     @district = District.find(id)
