@@ -50,4 +50,8 @@ class Shift < ActiveRecord::Base
   def dismiss_shift_alert
     self.update(alert_admin: false)
   end
+
+  def self.active_carepairs
+    Shift.where(updated_at: 1.week.ago..Time.now).pluck(:care_pair_id).uniq
+  end
 end

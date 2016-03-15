@@ -14,25 +14,9 @@ class Client < ActiveRecord::Base
   after_validation :geocode          # auto-fetch coordinates
   after_save :geocode
 
-#i know this has to be the slowest way to do this
   def self.dormant_cases
-    clients = Client.all
-    dormant_hash = {}
-    clients.each do |client|
-      recent_count = 0
-      pairs = CarePair.where(client_id: client)
-      if pairs.count == 0
-        dormant_hash[client.id] = 0
-      else
-        pairs.each do |pair|
-          recent = pair.shifts.where(updated_at: 1.week.ago..Date.today)
-          recent_count += recent.count
-        end
-        if recent_count < 1
-          dormant_hash[client.id] = 0
-        end
-      end
-    end
-    return dormant_hash
+    all_ids = Client.pluck(:id)
+    dormant_ids = (all_ids - CarePair.all_client_ids) + CarePair.dormant_client_ids
+    Client.find(dormant_ids)
   end
 end

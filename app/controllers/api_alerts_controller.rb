@@ -9,5 +9,5 @@ class ApiAlertsController < ApplicationController
     clients_array = Client.dormant_cases
     alert_num = clients_array.length
     render json: {count: alert_num}
-  end  
+  end
 end

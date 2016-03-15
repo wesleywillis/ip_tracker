@@ -1,0 +1,26 @@
+<div class="col-md-8 col-md-offset-2">
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title">Dormant Cases</h3>
+    </div>
+    <table class="table table-hover">
+      <tr>
+        <th> Client ID</th>
+        <th> Client Name </th>
+        <th> Client Phone Number </th>
+        <th class ="alert-icon-header"> Dismiss? </th>
+      </tr>
+      <% @dormant_cases.each do |client| %>
+      <tr>
+        <td><strong><%= client[:id] %><strong></td>
+          <td><%= client[:first_name] + ' ' + client[:last_name] %></td>
+          <td><%= client[:primary_phone] %></td>
+          <td class ="alert-icon">
+            <span class="glyphicon glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+          </td>
+      </tr>
+        <% end %>
+    </table>
+  </div>
+</div>
+  
