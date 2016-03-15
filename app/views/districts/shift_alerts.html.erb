@@ -11,6 +11,7 @@
     <th> Client Phone Number </th>
     <th> Worker Name</th>
     <th> Worker Phone Number </th>
+    <th class ="alert-icon-header"> Dismiss? </th>
   </tr>
   <% @bad_shifts.each do |shift| %>
   <% client = CarePair.find(shift.care_pair_id).client%>
@@ -21,6 +22,9 @@
       <td><%= client.primary_phone %></td>
       <td><%= worker.first_name + ' ' + worker.last_name %></td>
       <td><%= worker.primary_phone %></td>
+      <td class ="alert-icon">
+        <span class="glyphicon glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+      </td>
     </tr>
   <% end %>
   </table>
