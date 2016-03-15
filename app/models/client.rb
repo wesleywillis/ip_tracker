@@ -22,15 +22,15 @@ class Client < ActiveRecord::Base
       recent_count = 0
       pairs = CarePair.where(client_id: client)
       if pairs.count == 0
-        dormant_hash[client] = 0
+        dormant_hash[client.id] = 0
       else
         pairs.each do |pair|
           recent = pair.shifts.where(updated_at: 1.week.ago..Date.today)
           recent_count += recent.count
         end
-      end
-      if recent_count > 0
-        dormant_hash[client] = 0
+        if recent_count < 1
+          dormant_hash[client.id] = 0
+        end
       end
     end
     return dormant_hash
