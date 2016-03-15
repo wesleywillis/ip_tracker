@@ -7,11 +7,11 @@
   <button class="btn btn-default btn-lg btn-link circle-glyph" style="font-size:36px;">
     <span class="glyphicon glyphicon-map-marker"></span>
   </button>
-    <span class="badge badge-notify"><%=@false_shifts.count%></span>
+    <span class="badge badge-notify js-bad-shifts">29</span>
   <button class="btn btn-default btn-lg btn-link circle-glyph" style="font-size:36px;">
     <span class="glyphicon glyphicon-bell"></span>
   </button>
-    <span class="badge badge-notify"><%=@dormant.count%></span>
+    <span class="badge badge-notify js-dormant-cases">76</span>
 </div>
 
 <h2><%= link_to "Add a Client", new_district_client_path(@district), :class => 'btn btn-large btn-primary' %></h2>

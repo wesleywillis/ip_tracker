@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post 'districts/sms' => 'districts#sms', as: :sms
   post 'districts/gps' => 'districts#gps', as: :gps
 
+  get 'api/districts/:id/shifts', to: 'api_alerts#bad_shifts'
+  get 'api/districts/:id/dormant', to: 'api_alerts#dormant_cases'
   resources :districts do
     resources :clients
     resources :workers

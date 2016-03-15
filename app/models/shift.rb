@@ -35,11 +35,19 @@ class Shift < ActiveRecord::Base
     if (self.start_range == true && self.stop_range == true)
       self.update(final_range: true)
     else
-      self.update(final_range: false)
+      self.update(final_range: false, alert_admin: true)
     end
   end
 
   def shift_length
     self.update(shift_minutes: ((self.updated_at - self.created_at)/60.0))
+  end
+
+  def self.collect_bad_shifts
+    Shift.where(alert_admin: true)
+  end
+
+  def dismiss_shift_alert
+    self.update(alert_admin: false)
   end
 end
