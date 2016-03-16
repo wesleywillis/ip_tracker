@@ -17,7 +17,7 @@
 $(document).ready(function(){
   $('.glyphicon-remove-circle').click( function(){
       console.log("inside the click");
-      var shift_id = $($(this).parents("tr")[0]).children("#grab_shift_id").html();
+      var shift_id = $($(this).parents("tr")[0]).children("grab_shift_id").html();
       var self = $(this);
       $.ajax({
         type: "PATCH",
@@ -33,7 +33,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('.customer_dismiss_icon').click( function(){
       console.log("inside the click");
-      var client_id = $($(this).parents("tr")[0]).children("#grab_client_id").html();
+      var client_id = $($(this).parents("tr")[0]).children("grab_client_id").html();
       var self = $(this);
       $.ajax({
         type: "PATCH",

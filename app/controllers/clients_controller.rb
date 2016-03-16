@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
   end
 
   def dismiss_alert
-    id = params[:id]
+    id = params[:client_id]
     Client.find(id).update(alert_admin: false)
     respond_to do |format|
       format.json { head :no_content }

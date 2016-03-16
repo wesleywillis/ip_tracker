@@ -17,7 +17,7 @@
       <% client = CarePair.find(shift.care_pair_id).client%>
       <% worker = CarePair.find(shift.care_pair_id).worker%>
       <tr>
-        <td id="grab_shift_id"><%= shift.id %></td>
+        <td class="grab_shift_id"><%= shift.id %></td>
         <td><strong><%= shift.created_at %><strong></td>
           <td><%= client.first_name + ' ' + client.last_name %></td>
           <td><%= client.primary_phone %></td>
