@@ -14,9 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-$(document).ready(function(){
-  $('.glyphicon-remove-circle').click( function(){
-      console.log("inside the click");
+  $(document).ready(function(){
+    $('.shift-dismiss-button').click( function(){
+      console.log("inside SHIFT click");
       var shift_id = $($(this).parents("tr")[0]).children(".grab_shift_id").html();
       var self = $(this);
       $.ajax({
@@ -29,16 +29,16 @@ $(document).ready(function(){
       });
     });
     $('.customer_dismiss_icon').click( function(){
-        console.log("inside the click");
-        var client_id = $($(this).parents("tr")[0]).children(".grab_client_id").html();
-        var self = $(this);
-        $.ajax({
-          type: "PATCH",
-          url: "dormant",
-          data: {client_id: client_id}
-        }).done(function() {
-          self.closest('tr').fadeOut();
-        }).fail(function(){
-        });
+      console.log("inside CLIENT click");
+      var client_id = $($(this).parents("tr")[0]).children(".grab_client_id").html();
+      var self = $(this);
+      $.ajax({
+        type: "PATCH",
+        url: "dormant",
+        data: {client_id: client_id}
+      }).done(function() {
+        self.closest('tr').fadeOut();
+      }).fail(function(){
       });
-});
+    });
+  });

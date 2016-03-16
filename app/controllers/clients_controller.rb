@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
   def index
     @district = params[:district_id]
     @all_clients = Client.all
@@ -10,7 +12,10 @@ class ClientsController < ApplicationController
 
   def dismiss_alert
     id = params[:client_id]
+    #binding.pry
     Client.find(id).update(alert_admin: false)
+    #binding.pry
+
     respond_to do |format|
       format.json { head :no_content }
     end
