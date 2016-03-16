@@ -14,7 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-  $(document).ready(function(){
+  // $(document).ready(function(){
+  function dismissAlerts(){
     $('.shift-dismiss-button').click( function(){
       console.log("inside SHIFT click");
       var shift_id = $($(this).parents("tr")[0]).children(".grab_shift_id").html();
@@ -41,4 +42,6 @@
       }).fail(function(){
       });
     });
-  });
+  }
+
+  jQuery(document).on("ready page:change", function() { dismissAlerts(); });
