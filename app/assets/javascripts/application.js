@@ -27,6 +27,5 @@ $(document).ready(function(){
         self.closest('tr').fadeOut();
       }).fail(function(){
       });
-
     });
 });
