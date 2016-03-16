@@ -51,6 +51,8 @@ class Shift < ActiveRecord::Base
     self.update(alert_admin: false)
   end
 
+  scope :active, -> { where(updated_at: 1.week.ago..Time.now) }
+  scope :dormant, -> { where.not(updated_at: 1.week.ago..Time.now) }
   def self.active_carepairs
     Shift.where(updated_at: 1.week.ago..Time.now).pluck(:care_pair_id).uniq
   end
