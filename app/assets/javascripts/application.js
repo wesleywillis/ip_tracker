@@ -29,3 +29,19 @@ $(document).ready(function(){
       });
     });
 });
+
+$(document).ready(function(){
+  $('.customer_dismiss_icon').click( function(){
+      console.log("inside the click");
+      var client_id = $($(this).parents("tr")[0]).children("#grab_client_id").html();
+      var self = $(this);
+      $.ajax({
+        type: "PATCH",
+        url: "dormant",
+        data: {id: client_id}
+      }).done(function() {
+        self.closest('tr').fadeOut();
+      }).fail(function(){
+      });
+    });
+});

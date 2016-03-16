@@ -12,15 +12,14 @@
       </tr>
       <% @dormant_cases.each do |client| %>
       <tr>
-        <td><strong><%= client[:id] %><strong></td>
+        <td id="grab_client_id"><strong><%= client[:id] %><strong></td>
           <td><%= client[:first_name] + ' ' + client[:last_name] %></td>
           <td><%= client[:primary_phone] %></td>
           <td class ="alert-icon">
-            <span class="glyphicon glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon glyphicon-remove-circle customer_dismiss_icon" aria-hidden="true"></span>
           </td>
       </tr>
         <% end %>
     </table>
   </div>
 </div>
-  

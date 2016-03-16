@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'districts/:id/dormant', to: 'clients#dormant', as: :dormant
   get 'districts/:id/shift_alerts', to: 'shifts#shift_alerts', as: :shift_alerts
   patch 'districts/:id/shift_alerts', to: 'shifts#dismiss', as: :dismiss_shift_alerts
+  patch 'districts/:id/dormant', to: 'clients#dismiss_alert', as: :dismiss_dormant_alerts
 
   resources :districts do
     resources :clients

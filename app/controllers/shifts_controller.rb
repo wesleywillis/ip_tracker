@@ -6,13 +6,9 @@ class ShiftsController < ApplicationController
 
   def dismiss
     id = params[:id]
-    shift = Shift.find(id)
-    shift.update(alert_admin: false)
-
+    Shift.find(id).update(alert_admin: false)
     respond_to do |format|
-      #format.html { redirect_to shift_alerts_path(params[:district_id]) }
       format.json { head :no_content }
-      #format.js   { render :layout => false }
     end
   end
 end

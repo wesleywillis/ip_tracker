@@ -8,8 +8,12 @@ class ClientsController < ApplicationController
     @dormant_cases = Client.dormant_cases
   end
 
-  def dismiss
-
+  def dismiss_alert
+    id = params[:id]
+    Client.find(id).update(alert_admin: false)
+    respond_to do |format|
+      format.json { head :no_content }
+    end
   end
 
   def new
