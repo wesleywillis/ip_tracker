@@ -14,3 +14,19 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(document).ready(function(){
+  $('.glyphicon-remove-circle').click( function(){
+      console.log("inside the click");
+      var shift_id = $($(this).parents("tr")[0]).children("#grab_shift_id").html();
+      var self = $(this);
+      $.ajax({
+        type: "PATCH",
+        url: "shift_alerts",
+        data: {id: shift_id}
+      }).done(function() {
+        self.closest('tr').fadeOut();
+      }).fail(function(){
+      });
+
+    });
+});

@@ -8,6 +8,10 @@ class ClientsController < ApplicationController
     @dormant_cases = Client.dormant_cases
   end
 
+  def dismiss
+
+  end
+
   def new
     @client = Client.new
     @all_workers = Worker.all

@@ -5,17 +5,19 @@
     </div>
     <table class="table table-hover">
       <tr>
-        <th> Date</th>
-        <th> Client Name </th>
-        <th> Client Phone Number </th>
-        <th> Worker Name</th>
-        <th> Worker Phone Number </th>
-        <th class ="alert-icon-header"> Dismiss? </th>
+        <th>Shift ID</th>
+        <th>Date</th>
+        <th>Client Name </th>
+        <th>Client Phone Number</th>
+        <th>Worker Name</th>
+        <th>Worker Phone Number</th>
+        <th class ="alert-icon-header">Dismiss?</th>
       </tr>
       <% @bad_shifts.each do |shift| %>
       <% client = CarePair.find(shift.care_pair_id).client%>
       <% worker = CarePair.find(shift.care_pair_id).worker%>
       <tr>
+        <td id="grab_shift_id"><%= shift.id %></td>
         <td><strong><%= shift.created_at %><strong></td>
           <td><%= client.first_name + ' ' + client.last_name %></td>
           <td><%= client.primary_phone %></td>
@@ -29,4 +31,3 @@
     </table>
   </div>
 </div>
-  
