@@ -5,7 +5,7 @@ class ShiftsController < ApplicationController
   end
 
   def dismiss
-    id = params[:id]
+    id = params[:shift_id]
     Shift.find(id).update(alert_admin: false)
     respond_to do |format|
       format.json { head :no_content }
