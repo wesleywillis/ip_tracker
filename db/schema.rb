@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316002027) do
+ActiveRecord::Schema.define(version: 20160316213933) do
 
   create_table "care_pairs", force: :cascade do |t|
     t.integer  "client_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20160316002027) do
     t.string   "city"
     t.string   "state"
     t.float    "max_monthly_minutes",           default: 9600.0
-    t.boolean  "alert_admin",                   default: false
+    t.boolean  "alert_admin"
   end
 
   create_table "districts", force: :cascade do |t|

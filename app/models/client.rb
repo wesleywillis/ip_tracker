@@ -17,7 +17,7 @@ class Client < ActiveRecord::Base
   def self.dormant_cases
     all_ids = Client.pluck(:id)
     dormant_ids = (all_ids - CarePair.all_client_ids) + CarePair.dormant_client_ids
-    Client.where(id: dormant_ids).update_all(alert_admin: true)
+    Client.where(id: dormant_ids, alert_admin: nil).update_all(alert_admin: true)
     return Client.where(alert_admin: true)
   end
 end
