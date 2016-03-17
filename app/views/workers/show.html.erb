@@ -36,16 +36,29 @@
   <% end %>
   </table>
 </div>
-<h1> Shifts </h1>
-<ul>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Shifts</h3>
+  </div>
+  <table class="table table-hover">
+  <tr>
+    <th> Client </th>
+    <th> Start Time </th>
+    <th> Stop Time </th>
+    <th> In Range? </th>
+  </tr>
   <% @pairs.each do |pair| %>
-      <li>Client: <%= pair.client.first_name + " " + pair.client.last_name %></li>
-      <ul>
-      <%pair.shifts.each do |shift|%>
-        <li>Start Time: <%= shift.created_at %></li>
-        <li>Stop Time: <%= shift.updated_at %></li>
-      <% end %>
-      </ul>
+  <tr>
+      <%name = (pair.client.first_name + " " + pair.client.last_name) %>
+        <%pair.shifts.each do |shift|%>
+          <td><%= name %></td>
+          <td><%= shift.created_at %></td>
+          <td><%= shift.updated_at %></td>
+          <td><%= shift.final_range %></td>
+  </tr>
+        <% end %>
   <% end %>
-</ul>
-<div>
+  </table>
+</div>
+</div>
