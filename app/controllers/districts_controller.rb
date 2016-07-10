@@ -14,10 +14,10 @@ class DistrictsController < ApplicationController
       render :layout => false
     end
   end
-
-  def letsencrypt
-    render plain: ENV['LE_AUTH_RESPONSE']
-  end
+  #
+  # def letsencrypt
+  #   render plain: ENV['LE_AUTH_RESPONSE']
+  # end
 
   def gps
     if params[:progress] == "located"

@@ -1,8 +1,9 @@
 <div class="row">
-    <div class="col-md-2">
+  <form>
+    <div class="col-md-2 form-group">
       <%= link_to "Add a Client", new_district_client_path(@district), :class => 'btn btn-lg btn-primary' %>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 form-group">
       <%= link_to "Add a Worker", new_district_worker_path(@district), :class => 'btn btn-lg btn-primary' %>
     </div>
     <div class="col-md-2">
@@ -17,4 +18,5 @@
       </button>
         <span class="badge badge-notify js-dormant-cases">76</span>
       </div>
+    </form>
     </div>
