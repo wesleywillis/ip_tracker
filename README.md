@@ -5,11 +5,11 @@
 
 > (Ruby, Rails, JavaScript, JQuery, HTML5, CSS3, Twilio, Pusher, Pinlogic) 
 
-------------------------------------------
 
-### Disclaimer: Documentation is under construction.  Project was previously deployed on AWS and available at GPStimeClock.org, but I have taken offline due to server costs.  If you would like a demo, I can temporarily re-deploy the project for you to try.
 
-------------------------------------------
+###### Disclaimer: Documentation is under construction.  Project was previously deployed on AWS and available at GPStimeClock.org, but I have taken offline due to server costs.  If you would like a demo, I can temporarily re-deploy the project for you to try.
+
+
 
 ### Problem Statement
 
