@@ -24,7 +24,7 @@ In my previous job as a case coordinator at the Illinois Department of Rehabilit
 
 * SOLUTION:  My project verifies location via GPS, and is not tied to one specific phone.  This allows flexibilty for workers and clients and does not penalize them for not being able to afford a landline.
 
-* PROBLEM: The current system used by DRS does not take into account the needs of the administrators.  The software is written for hospital field workers, and does not supply many funtions that would be useful for a DRS employee - such as notifications when a client has had no workers visit them for an extended period of time, or may have moved without notifying the office.
+* PROBLEM: The current system used by DRS does not take into account the needs of the administrators.  The software is written for hospital field workers, and does not supply many functions that would be useful for a DRS employee - such as notifications when a client has had no workers visit them for an extended period of time, or may have moved without notifying the office.
 
 * SOLUTION:  My project sends live alerts to the administrator if a client's case is associated with unusual behavior (clients with no check-ins from workers, or check-ins repeatedly coming from an area not associated with a client's known address).  These automations can be incredibly helpful to case managers, and assist them to better manage their caseloads which can include over 1,000 clients.
 
